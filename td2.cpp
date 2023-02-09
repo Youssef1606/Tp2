@@ -1,7 +1,7 @@
 ﻿#pragma region "Includes"//{
 #define _CRT_SECURE_NO_WARNINGS // On permet d'utiliser les fonctions de copies de chaînes qui sont considérées non sécuritaires.
 
-#include "structures.hpp"      // Structures de données pour la collection de films en mémoire.
+#include "structures.hpp"      // Structures de données pour la collection de films en mémoire
 
 #include <iostream>
 #include <fstream>
@@ -86,20 +86,24 @@ ListeFilms creerListe(string nomFichier)
 	fichier.exceptions(ios::failbit);
 	
 	int nElements = lireUint16(fichier);
-
+    
 	//TODO: Créer une liste de films vide.
-	std::list<char> liste_films;
-	for (int i = 0; i < nElements; i++) {
-		lireFilm(fichier); //TODO: Ajouter le film à la liste.
+	ListeFilms nouvelleListe;
+	nouvelleListe.nElements = nElements;
+    nouvelleListe.elements = new Film*[nElements];
+    for (int i = 0; i < nElements; i++) {
+		nouvelleListe.elements[i] = lireFilm(fichier); //TODO: Ajouter le film à la liste.
 	}
 	
-	return liste_films; //TODO: Retourner la liste de films.
+
+	return nouvelleListe; //TODO: Retourner la liste de films.
 }
 
 //TODO: Une fonction pour détruire un film (relâcher toute la mémoire associée à ce film, et les acteurs qui ne jouent plus dans aucun films de la collection).  Noter qu'il faut enleve le film détruit des films dans lesquels jouent les acteurs.  Pour fins de débogage, affichez les noms des acteurs lors de leur destruction.
-void detruireFilm(Film)
+void detruireFilm(Film* film)
 {
-	
+	  delete [] film;
+	  delete [] film.acteurs
 }
 //TODO: Une fonction pour détruire une ListeFilms et tous les films qu'elle contient.
 
