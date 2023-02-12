@@ -137,34 +137,42 @@ ListeFilms creerListe(string nomFichier)
 //TODO: Une fonction pour détruire un film (relâcher toute la mémoire associée à ce film, et les acteurs qui ne jouent plus dans aucun films de la collection).  Noter qu'il faut enleve le film détruit des films dans lesquels jouent les acteurs.  Pour fins de débogage, affichez les noms des acteurs lors de leur destruction.
 void detruireFilm(Film* film)
 {
+	
 	for (int i = 0; i < film->acteurs.nElements; i++)
 	{
-		film->acteurs.elements[i]->joueDans
-		acteur->joueDans.enleverFilm(film)
-		if (acteur->joueDans.nElements==0)
+		enleverFilm(film->acteurs.elements[i]->joueDans, film->acteurs.nElements,film)
+		if (film->acteurs.elements[i]->joueDans.nElements == 0)
 		{
-			cout << "On détruit "<< acteur-> nom << endl;
-			acteur->joueDans.~ListeFilms();
-			delete[] acteur ->joueDans.elements;
-			acteur->joueDans.elements=nullptr;
-			delete acteur;
-			acteur = nullptr;
+			cout << "On détruit "<< film->acteurs.elements[i].nom << endl;
+			//acteur->joueDans.~ListeFilms();
+			delete[] film->acteurs.elements[i]->joueDans.elements;
+			film->acteurs.elements[i]->joueDans.elements=nullptr;
+			delete film->acteurs.elements[i];
+			film->acteurs.elements[i] = nullptr;
 			film->acteurs.nElements--;
 		}
 
 
-
-		
 			
 	}
 	cout <<"On détruit " << film->titre << endl;
-	enleverFilm(film)
+	
 	delete[] film->acteurs.elements;
 	film->acteurs.elements = nullptr;
+	
+	delete film;
 	film = nullptr;
 }
 //TODO: Une fonction pour détruire une ListeFilms et tous les films qu'elle contient.
-
+void detruireListeFilms(Film** Listefilms)
+{
+	
+	for (int i = 0; i < film->acteurs.nElements; i++)
+	{
+		
+	}
+	
+}
 void afficherActeur(const Acteur& acteur)
 {
 	cout << "  " << acteur.nom << ", " << acteur.anneeNaissance << " " << acteur.sexe << endl;
